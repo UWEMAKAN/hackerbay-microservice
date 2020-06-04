@@ -7,7 +7,8 @@ const controller = (dependencies) => {
 
   async function login(req, res, next) {
     const LoginUserCommand = Login(AuthRepo);
-    const data = req.body;
+    const { emailAddress, password } = req.body;
+    const data = { emailAddress, password };
     try {
       const response = await LoginUserCommand.Execute(data);
       return res.json(response);

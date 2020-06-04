@@ -10,9 +10,7 @@ const login = (AuthRepository) => {
    * @returns {Object}
    */
   async function Execute(data) {
-    if (
-      !data.emailAddress || !data.password
-    ) {
+    if (!data.emailAddress || !data.password) {
       throw new Error('validation failed');
     }
 
@@ -20,9 +18,7 @@ const login = (AuthRepository) => {
     return response;
   }
 
-  return {
-    Execute
-  };
+  return { Execute };
 };
 
 export default login;
