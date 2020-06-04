@@ -4,7 +4,8 @@ module.exports = {
     node: true,
     jest: true
   },
-  extends: ['airbnb-base', 'plugin:jsdoc/recommended'],
+  extends: ['airbnb-base'],
+  // extends: ['airbnb-base', 'plugin:jsdoc/recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
