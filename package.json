@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "npm run build && node ./dist/app.js",
+    "prestart": "npm run build && npm run gen:docs",
+    "start": "node ./dist/app.js",
     "serve": "nodemon ./dist/app.js",
     "watch": "watch 'npm run build' src",
     "prebuild": "rimraf dist",
@@ -13,7 +14,7 @@
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
     "lint": "eslint \"src/**/*.js\"",
-    "gen:docs": "npx jsdoc ./src/**/**/*.js"
+    "gen:docs": "npx jsdoc ./src/**/**/*.js -d './dist/public/docs'"
   },
   "author": "Uwem Akan Nkereuwem",
   "license": "ISC",
@@ -43,6 +44,7 @@
     "jsonwebtoken": "8.5.1",
     "morgan": "1.10.0",
     "nodemon": "2.0.3",
+    "swagger-ui-express": "4.1.4",
     "winston": "3.2.1"
   },
   "nodemonConfig": {

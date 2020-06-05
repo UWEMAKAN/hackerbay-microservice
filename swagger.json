@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Node Microservice API",
+    "title": "Microservice API",
     "description": "Create thumbnails and patch json documents"
   },
   "host": "localhost:4500",
@@ -20,20 +20,20 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
-        "scheme": "bearer",
+        "scheme": "Bearer",
         "bearerFormat": "JWT"
       }
     }
   },
   "paths": {
-    "/login": {
+    "/auth/login": {
       "post": {
         "description": "login and receive token for authenticating subsequent requests",
         "parameters": [
           {
-            "username": "username",
+            "emailAddress": "emailAddress",
             "in": "body",
-            "description": "username and password"
+            "description": "emailAddress and password"
           }
         ],
         "produces": [
@@ -45,7 +45,7 @@
         }
       }
     },
-    "/createthumbnail": {
+    "/api/v1/thumbnail": {
       "post": {
         "security": [
           {
@@ -81,7 +81,7 @@
         }
       }
     },
-    "/jsonpatch": {
+    "/api/v1/jsonpatch": {
       "patch": {
         "security": [
           {

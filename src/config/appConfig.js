@@ -1,4 +1,5 @@
 import fs from 'fs';
+import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -7,7 +8,6 @@ import compression from 'compression';
 
 const config = (app) => {
   const accessLogStream = fs.createWriteStream(`${appRoot}/dist/logs/access.log`, { flags: 'a' });
-
   morgan.token('time', (tokens, req, res) => {
     let responseTime = `${Math.round(tokens['response-time'](req, res))}`;
     if (responseTime.length < 2) {
@@ -22,14 +22,16 @@ const config = (app) => {
     }
     return requestPath;
   });
+  morgan.token('agent', (tokens, req, res) => `${tokens['user-agent'](req, res)}`);
 
   app.use(compression());
   app.use(morgan((tokens, req, res) => [
     tokens.method(req, res),
     tokens.path(tokens, req, res),
     tokens.status(req, res),
-    tokens.time(tokens, req, res)
-  ].join('\t'), {
+    tokens.time(tokens, req, res),
+    tokens.agent(tokens, req, res)
+  ].join('\t\t'), {
     stream: accessLogStream,
     skip: (req, res) => res.statusCode === 404 || req.originalUrl === '/'
   }));
@@ -41,6 +43,8 @@ const config = (app) => {
     optionsSuccessStatus: 200
   };
   app.use(cors(corsOptions));
+  app.use(express.static(`${appRoot}/dist/public`));
+  app.get('/docs', (req, res) => res.render('/docs/index.html'));
 };
 
 export default config;
