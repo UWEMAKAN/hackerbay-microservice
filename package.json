@@ -10,9 +10,8 @@
     "prebuild": "rimraf dist",
     "build": "babel src -d dist --ignore '**/*.test.js'",
     "postbuild": "mkdir dist/logs && touch dist/logs/access.log",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "test:cover": "jest --coverage",
     "lint": "eslint \"src/**/*.js\"",
     "gen:docs": "npx jsdoc ./src/**/**/*.js -d './dist/public/docs'"
   },
