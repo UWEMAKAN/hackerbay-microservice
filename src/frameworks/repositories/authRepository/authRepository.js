@@ -31,7 +31,7 @@ class AuthRepository {
    */
   async signToken(emailAddress) {
     const jwtPayload = { emailAddress };
-    const token = await jwt.sign(jwtPayload, process.env.SECRET, { expiresIn: '2 days' });
+    const token = await jwt.sign(jwtPayload, 'JWT_SECRET', { expiresIn: '2 days' });
     return token;
   }
 
@@ -42,7 +42,7 @@ class AuthRepository {
    *  Returns undefined for valid tokens, JsonWebTokenError for invalid tokens
    */
   async verifyToken(token) {
-    return jwt.verify(token, process.env.SECRET);
+    return jwt.verify(token, 'JWT_SECRET');
   }
 
   /**
