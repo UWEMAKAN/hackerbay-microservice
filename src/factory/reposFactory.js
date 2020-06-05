@@ -3,6 +3,10 @@ import AuthRepository from '../frameworks/repositories/authRepository/authReposi
 import JsonPatchRepository from '../frameworks/repositories/jsonPatchRepository/jsonPatchRepository';
 import ThumbnailRepository from '../frameworks/repositories/thumbnailRepository/thumbnailRepository';
 
+/**
+ * Factory function for initializing Repositories
+ * @returns {Object} Returns an object containing project dependencies
+ */
 const reposFactory = () => ({
   AuthRepo: new AuthRepository(),
   JsonPatchRepo: new JsonPatchRepository(),

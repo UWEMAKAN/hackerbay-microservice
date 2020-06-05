@@ -5,6 +5,8 @@ import cors from 'cors';
 import appRoot from 'app-root-path';
 import compression from 'compression';
 
+process.env.SECRET = 'JWT_SECRET';
+
 const config = (app) => {
   const accessLogStream = fs.createWriteStream(`${appRoot}/dist/logs/access.log`, { flags: 'a' });
 

@@ -56,7 +56,7 @@ describe('Testing patch method of the JsonPatchRepository', () => {
       await Repo.patch({ document, inValidPatch });
     } catch (err) {
       expect(err).toBeInstanceOf(Error);
-      expect(err).toStrictEqual(Error('json patch operation failed'));
+      expect(err).toStrictEqual(Error('patch operation failed'));
     } finally {
       done();
     }

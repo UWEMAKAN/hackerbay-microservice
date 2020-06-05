@@ -2,9 +2,20 @@
 import jsonPatch from '../../application/useCases/jsonPatch/jsonPatch';
 import ErrorHandler from '../../common/ErrorHandler';
 
+/**
+ * Controller for handling json patch requests
+ * @param {Object} dependencies - An object containing project dependencies as properties
+ * @returns {Object} - An object with property patchJson: Function
+ */
 const controller = (dependencies) => {
   const { JsonPatchRepo } = dependencies;
 
+  /**
+   * Function for handling requests to /jsonpatch
+   * @param {Object} req - Request object
+   * @param {Object} res - Response object
+   * @param {Function} next - Next function to execute when this function is done
+   */
   async function patchJson(req, res, next) {
     const JsonPatchCommand = jsonPatch(JsonPatchRepo);
     const { document, patch } = req.body;

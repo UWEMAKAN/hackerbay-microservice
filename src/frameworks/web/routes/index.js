@@ -2,6 +2,11 @@ import express from 'express';
 import jsonPatchRoutes from './jsonPatchRoutes/jsonPatchRoutes';
 import thumbnailRoutes from './thumbnailRoutes/thumbnailRoutes';
 
+/**
+ * api router function
+ * @param {Object} dependencies project dependencies
+ * @returns {Function} api routes
+ */
 const apiRouter = (dependencies) => {
   const routes = express.Router();
 

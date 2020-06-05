@@ -2,9 +2,21 @@
 import Login from '../../application/auth/login';
 import ErrorHandler from '../../common/ErrorHandler';
 
+/**
+ * Controller for handling authentication requests
+ * @param {Object} dependencies - An object containing project dependencies as properties
+ * @returns {Object} - An object with property login: Function
+ */
 const controller = (dependencies) => {
   const { AuthRepo } = dependencies;
 
+  /**
+   * Function for handling request to /login
+   * @param {Object} req - Request object
+   * @param {Object} res - Response object
+   * @param {Function} next - Next function to execute when this function is done
+   * @returns {Object} - Response from the operation
+   */
   async function login(req, res, next) {
     const LoginUserCommand = Login(AuthRepo);
     const { emailAddress, password } = req.body;
